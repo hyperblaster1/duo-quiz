@@ -80,6 +80,8 @@ function App() {
           case '/':
             _answerArray.push((Number(_pair[0]) / Number(_pair[2])).toFixed(2))
             break
+          default:
+            return null
         }
       }
       setQuestionList1([..._quizArray])
@@ -113,6 +115,8 @@ function App() {
           case '/':
             _answerArray.push((Number(_pair[0]) / Number(_pair[2])).toFixed(2))
             break
+          default:
+            return null
         }
       }
       setQuestionList2([..._quizArray])
@@ -140,10 +144,14 @@ function App() {
             questionCount1={questionCount1}
           />
         )}
-        {currentQuesIndex1 === questionList1.length &&
-          resultsSheet1.map((item, index) => (
-            <div key={index} dangerouslySetInnerHTML={{__html: item}}></div>
-          ))}
+        {currentQuesIndex1 === questionList1.length && questionList1.length > 0 && (
+          <>
+            <div className='text-4xl'>Score {correctAnswers1 + '/' + questionCount1}</div>
+            {resultsSheet1.map((item, index) => (
+              <div key={index} dangerouslySetInnerHTML={{__html: item}}></div>
+            ))}
+          </>
+        )}
       </div>
       <div className='p-6 w-1/2 h-screen flex-col items-center'>
         {!quiz2Status && (
@@ -163,10 +171,14 @@ function App() {
             questionCount2={questionCount2}
           />
         )}
-        {currentQuesIndex2 === questionList2.length &&
-          resultsSheet2.map((item, index) => (
-            <div key={index} dangerouslySetInnerHTML={{__html: item}}></div>
-          ))}
+        {currentQuesIndex2 === questionList2.length && questionList2.length > 0 && (
+          <>
+            <div className='text-4xl'>Score {correctAnswers2 + '/' + questionCount2}</div>
+            {resultsSheet2.map((item, index) => (
+              <div key={index} dangerouslySetInnerHTML={{__html: item}}></div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   )
